@@ -3,6 +3,7 @@ imageRegeneratorPrestashop
 
 Regenerate safely prestashop images with Ajax
 
+Compatible Prestashop 1.6
 
 ##How it works
 
