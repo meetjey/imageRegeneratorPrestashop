@@ -74,6 +74,9 @@ class ImageRegenerator extends Module
 				$list = false;
 			}
 		}
+		else
+			$list = false;
+
 		if(!$list){
 			$list = array();
 			$process =
