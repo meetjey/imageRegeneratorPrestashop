@@ -35,7 +35,8 @@ class ImageRegenerator extends Module
 
 	public function hookActionAdminControllerSetMedia()
 	{
-		$this->context->controller->addJS(($this->_path).'js/ir-main.js');
+		if((Tools::getValue('controller') == 'AdminModules') && (Tools::getValue('configure') == $this->name))
+			$this->context->controller->addJS(($this->_path).'js/ir-main.js');
 	}
 
 	public function getContent()
@@ -118,4 +119,3 @@ class ImageRegenerator extends Module
 		return $r;
 	}
 }
-?>
