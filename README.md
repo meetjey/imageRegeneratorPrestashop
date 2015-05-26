@@ -20,7 +20,7 @@ Just download the imageregenerator folder and upload it to your /modules folder.
 
 If you want to help, you're welcome ;)
 
-<script async src="paypal-button.min.js?merchant=contact@meetjey.com"
+<script async src="https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=contact@meetjey.com"
     data-button="donate"
     data-type="form"
     data-name="Buy me a beer"
