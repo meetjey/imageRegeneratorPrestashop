@@ -20,4 +20,5 @@ Just download the imageregenerator folder and upload it to your /modules folder.
 
 If you want to help, you're welcome ;)
 - don't hesitate to commit improvements or new features
-- buy me a beer https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=YD5SD3VEGB6U6&lc=FR&item_name=MeetJey&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
+- [buy me a beer with paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=YD5SD3VEGB6U6&lc=FR&item_name=MeetJey&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
+)
