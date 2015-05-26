@@ -16,13 +16,8 @@ Compatible Prestashop 1.6
 
 Just download the imageregenerator folder and upload it to your /modules folder. Then install it as a classic module.
 
-##Support
+##Contribute
 
 If you want to help, you're welcome ;)
-
-<script async src="https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=contact@meetjey.com"
-    data-button="donate"
-    data-type="form"
-    data-name="Buy me a beer"
-    data-currency="EUR"
-></script>
+- don't hesitate to commit improvements or new features
+- buy me a beer https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=YD5SD3VEGB6U6&lc=FR&item_name=MeetJey&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
