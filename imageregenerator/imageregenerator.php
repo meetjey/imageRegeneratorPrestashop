@@ -9,21 +9,21 @@ class ImageRegenerator extends Module
 		$this->bootstrap = true;
 		$this->name = 'imageregenerator';
 		$this->tab = 'administration';
-		$this->version = '1.1';
-		$this->author = 'Jérémy Besson';
+		$this->version = '1.2';
+		$this->author = 'Jérémy Besson - ComonSoft';
 		$this->need_instance = 0;
 		$this->ps_versions_compliancy = array('min' => '1.5', 'max' => '1.6');
 		$this->dependencies = null;
 
 		parent::__construct();
 
-		$this->displayName = $this->l('Image Regenerator');
-		$this->description = $this->l('Use ajax to regenerate image safely.');
+		$this->displayName = $this->l('Image Regenerator', 'imageregenerator');
+		$this->description = $this->l('Use ajax to regenerate image safely.', 'imageregenerator');
 
-		$this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
+		$this->confirmUninstall = $this->l('Are you sure you want to uninstall?', 'imageregenerator');
 
 		if (!Configuration::get('IMAGEREGENERATOR'))
-			$this->warning = $this->l('No name provided');
+			$this->warning = $this->l('No name provided', 'imageregenerator');
 	}
 
 	public function install()
@@ -35,8 +35,13 @@ class ImageRegenerator extends Module
 
 	public function hookActionAdminControllerSetMedia()
 	{
-		if((Tools::getValue('controller') == 'AdminModules') && (Tools::getValue('configure') == $this->name))
+		if((Tools::getValue('controller') == 'AdminModules') && (Tools::getValue('configure') == $this->name)) {
 			$this->context->controller->addJS(($this->_path).'js/ir-main.js');
+			Media::addJsDef(array('ir_regenerate_str' => Tools::htmlentitiesUTF8($this->l('Regenerate', 'imageregenerator'))));
+			Media::addJsDef(array('ir_success_str' => Tools::htmlentitiesUTF8($this->l('Success', 'imageregenerator'))));
+			Media::addJsDef(array('ir_error_str' => Tools::htmlentitiesUTF8($this->l('Error', 'imageregenerator'))));
+			Media::addJsDef(array('ir_finished_str' => Tools::htmlentitiesUTF8($this->l('Finished', 'imageregenerator'))));
+		}
 	}
 
 	public function getContent()
@@ -51,13 +56,13 @@ class ImageRegenerator extends Module
 			}
 			if($image_regenerator_queue && !empty($image_regenerator_queue)){
 				Configuration::updateValue('image_regenerator_queue', $image_regenerator_queue);
-				$output .= $this->displayConfirmation($this->l('Queue saved'));
+				$output .= $this->displayConfirmation($this->l('Queue saved', 'imageregenerator'));
 			}
 		}else if(Tools::isSubmit('image_regenerator_reinit')){
 			$image_regenerator_reinit = strval(Tools::getValue('image_regenerator_reinit'));
 			if($image_regenerator_reinit && !empty($image_regenerator_reinit)){
 				Configuration::updateValue('image_regenerator_queue', '');
-				$output .= $this->displayConfirmation($this->l('Queue cleared'));
+				$output .= $this->displayConfirmation($this->l('Queue cleared', 'imageregenerator'));
 			}
 		}
 		return $output.$this->displayForm();
@@ -94,7 +99,7 @@ class ImageRegenerator extends Module
 				$list[$proc["type"]] = array("todo"=>array(),"done"=>array(),"errors"=>array());
 				if($proc["type"]=="products"){
 					foreach($images as $img){
-						$list["products"]["todo"][] = $img['id_image'];
+						$list['products']["todo"][] = $img['id_image'];
 					}
 				}else{
 					$scanned_directory = array_diff(scandir($proc['dir']), array('..', '.'));
@@ -106,18 +111,18 @@ class ImageRegenerator extends Module
 				}
 			}
 		}
-		$textHIW = $this->l("You can regenerate all your images safely.");
+		$textHIW = $this->l('You can regenerate all your images safely.', 'imageregenerator');
 		$r.='
 		<div class="panel">
-			<h3>'.$this->l("Let's go").'</h3>
+			<h3>'.$this->l('Let\'s go', 'imageregenerator').'</h3>
 			<p>'.$textHIW.'</p>
 			<div class="clearfix"></div>
 			<table width="100%" id="autoImg-buttons"></table>
 			<div class="clearfix"></div>
-			<div class="btn-toolbar" role="toolbar">
+			<div class="btn-toolbar" role="toolbar" style="padding-top:20px">
 				<div class="btn-group">
-					<button class="btn btn-primary" id="image_regenerator-pause"><span class="icon-pause"></span> '.$this->l('PAUSE').'</button>
-					<button class="btn btn-success" id="image_regenerator-resume"><span class="icon-play"></span> '.$this->l('RESUME').'</button>
+					<button class="btn btn-primary" id="image_regenerator-pause"><span class="icon-pause"></span> '.$this->l('PAUSE', 'imageregenerator').'</button>
+					 <button class="btn btn-success" id="image_regenerator-resume"><span class="icon-play"></span> '.$this->l('RESUME', 'imageregenerator').'</button>
 				</div>
 				<div class="btn-group">
 					<form method="post" id="image_regenerator_save_form">
@@ -128,17 +133,17 @@ class ImageRegenerator extends Module
 				<div class="btn-group">
 					<form method="post">
 						<input type="hidden" name="image_regenerator_reinit" value="1"/>
-						<button type="submit" class="btn btn-warning" id="image_regenerator-reinit">'.$this->l('RESET').'</button>
+						<button type="submit" class="btn btn-warning" id="image_regenerator-reinit">'.$this->l('RESET', 'imageregenerator').'</button>
 					</form>
 				</div>
 				<div class="btn-group">
 					<div class="checkbox">
-						<label><input type="checkbox" value="1" id="image_regenerator-watermark"> '.$this->l('Watermark ? (module watermark need to be enable)').'</label>
+						<label><input type="checkbox" value="1" id="image_regenerator-watermark"> '.$this->l('Watermark ? (module watermark need to be enable)', 'imageregenerator').'</label>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="panel"><h3>'.$this->l('Debug').'</h3><div id="autoImg-progress" style="width:100%;line-height:20px;height:60px;overflow:auto;"></div><br/><div class="clearfix"></div>
+		<div class="panel"><h3>'.$this->l('Debug', 'imageregenerator').'</h3><div id="autoImg-progress" style="width:100%;line-height:20px;height:60px;overflow:auto;"></div><br/><div class="clearfix"></div>
 		<script>var image_regenerator_can_run_queue = true;var image_regenerator_queuing_what = '.$image_regenerator_queue_what.';
 		var autoImg = $.parseJSON(\''.json_encode($list).'\');
 		var autoImgPath = "'.$this->context->link->getAdminLink('AdminModules').'&configure='.$this->name.'";
@@ -147,7 +152,7 @@ class ImageRegenerator extends Module
 	}
 
 	function ajaxProcessRegenerateMethod(){
-		$process =array('categories' => _PS_CAT_IMG_DIR_,
+		$process =array( 'categories' => _PS_CAT_IMG_DIR_,
 			'manufacturers' => _PS_MANU_IMG_DIR_,
 			'suppliers' => _PS_SUPP_IMG_DIR_,
 			'scenes' => _PS_SCENE_IMG_DIR_,
@@ -180,7 +185,7 @@ class ImageRegenerator extends Module
 
 						if (!file_exists($dir.$image) || !filesize($dir.$image))
 						{
-							$errors = sprintf(Tools::displayError('Source file does not exist or is empty (%s)', $dir.$image));
+							$errors = sprintf(Tools::displayError( $this->l('Source file does not exist or is empty (%s)', 'imageregenerator'), $dir.$image));
 						}
 						elseif (!ImageManager::resize($dir.$image, $newFile, (int)$imageType['width'], (int)$imageType['height']))
 						{
@@ -225,7 +230,7 @@ class ImageRegenerator extends Module
 						if (!file_exists($newFile)){
 							if (!ImageManager::resize($existing_img, $newFile, (int)($imageType['width']), (int)($imageType['height'])))
 							{
-								$errors = sprintf('Original image is corrupt (%s) or bad permission on folder', $existing_img);
+								$errors = sprintf($this->l('Original image is corrupt (%s) or bad permission on folder', 'imageregenerator'), $existing_img);
 							}else{
 								$success = 1;
 							}
@@ -237,7 +242,7 @@ class ImageRegenerator extends Module
 			}
 			else
 			{
-				$errors = sprintf('Original image is missing or empty (%s)', $existing_img);
+				$errors = sprintf($this->l('Original image is missing or empty (%s)', 'imageregenerator'), $existing_img);
 			}
 		}
 		echo json_encode(array('success'=>$success,'error'=>$errors,'watermark'=>$watermarked));
