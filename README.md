@@ -1,22 +1,22 @@
-imageRegeneratorPrestashop
-==========================
+# imageRegeneratorPrestashop
 
 Regenerate safely prestashop images with Ajax
 
+## Requirements
 Compatible Prestashop 1.6
 
-##Features
+## Features
 
 - Pause/resume queue regeneration
 - Regenerate by type (category, product...)
 - Support watermark (native watermark module)
 - Show progress
 
-##How it works
+## How it works
 
 Just download the imageregenerator folder and upload it to your /modules folder. Then install it as a classic module.
 
-##Contribute
+## Contribute
 
 If you want to help, you're welcome ;)
 - don't hesitate to commit improvements or new features
