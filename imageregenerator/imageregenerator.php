@@ -12,7 +12,7 @@ class ImageRegenerator extends Module
 		$this->version = '1.1';
 		$this->author = 'Jérémy Besson';
 		$this->need_instance = 0;
-		$this->ps_versions_compliancy = array('min' => '1.5', 'max' => '1.6');
+		$this->ps_versions_compliancy = array('min' => '1.5', 'max' => '1.7');
 		$this->dependencies = null;
 
 		parent::__construct();
