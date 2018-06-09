@@ -3,7 +3,7 @@
 Regenerate safely prestashop images with Ajax
 
 ## Requirements
-Compatible Prestashop 1.6
+Compatible Prestashop 1.7
 
 ## Features
 
