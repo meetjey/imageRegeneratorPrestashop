@@ -1,9 +1,9 @@
 # imageRegeneratorPrestashop
 
-Regenerate safely prestashop images with Ajax
+Regenerate safely prestashop images with async process (works on low performance server).
 
 ## Requirements
-Compatible Prestashop 1.7
+Compatible Prestashop 1.6+
 
 ## Features
 
