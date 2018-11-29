@@ -12,9 +12,17 @@ Compatible Prestashop 1.7
 - Support watermark (native watermark module)
 - Show progress
 
+## How to install
+
+- download project archive file : [imageRegeneratorPrestashop](https://github.com/meetjey/imageRegeneratorPrestashop/archive/master.zip)
+- unzip archive
+- copy `imageregenerator` folder to your `/modules` path of your Prestashop
+- go to Prestashop admin, modules, then search Image Regenerator and install it
+- you're done with install !
+
 ## How it works
 
-Just download the imageregenerator folder and upload it to your /modules folder. Then install it as a classic module.
+- just click on regenerate button to start
 
 ## Contribute
 
